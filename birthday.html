@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Shilpi!</title>
+  <style>
+    :root {
+      --bg1: #ff9a9e;
+      --bg2: #fad0c4;
+      --accent: #fff9c4;
+      --card: rgba(255,255,255,0.9);
+    }
+    html,body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
+    }
+    body {
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .stage {
+      width: 100%;
+      max-width: 920px;
+      background: linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      padding: 36px;
+    }
+
+    /* 🎥 Profile section centered */
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .profile-video {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow: 0 0 25px rgba(255, 120, 180, 0.5);
+      object-fit: cover;
+    }
+
+    header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #c43b7a;
+      text-shadow: 0 2px 8px rgba(255,105,180,0.2);
+    }
+    p.lead {
+      margin: 6px 0 0;
+      color: rgba(0,0,0,0.55);
+    }
+
+    .card {
+      margin-top: 20px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .message {
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    .bigwish {
+      font-size: 44px;
+      margin: 6px 0 12px;
+      color: #ff2d95;
+      text-shadow: 0 4px 20px rgba(255,45,149,0.18);
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      background: #ff2d95;
+      border: 0;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255,45,149,0.18);
+    }
+    button.secondary {
+      background: transparent;
+      color: #ff2d95;
+      border: 2px solid rgba(255,45,149,0.12);
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .cake {
+      width: 220px;
+      height: 150px;
+      position: relative;
+    }
+    .cake .layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff2f8;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+    .cake .layer.bottom {
+      width: 200px;
+      height: 70px;
+      bottom: 0;
+      background: linear-gradient(180deg,#ffdde8,#ffd6ee);
+    }
+    .cake .layer.top {
+      width: 150px;
+      height: 60px;
+      bottom: 48px;
+      background: linear-gradient(180deg,#fff5f9,#ffeaf3);
+    }
+    .candle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 120px;
+    }
+    .flame {
+      width: 12px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(180deg,#ffd54a,#ff6d00);
+      box-shadow: 0 6px 18px rgba(255,109,0,0.3);
+      animation: flicker 1s infinite;
+    }
+    @keyframes flicker {
+      0% { transform: translateX(-50%) translateY(0) scaleY(1) }
+      50% { transform: translateX(-50%) translateY(-2px) scaleY(0.98) }
+      100% { transform: translateX(-50%) translateY(0) scaleY(1) }
+    }
+
+    canvas.confetti {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @media(max-width:720px){
+      .card { grid-template-columns: 1fr; padding: 16px; }
+      .cake { display: none; }
+    }
+
+    footer {
+      margin-top: 14px;
+      text-align: center;
+      color: rgba(0,0,0,0.45);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" role="main" aria-label="Birthday card">
+    <canvas class="confetti" id="confettiCanvas"></canvas>
+
+    <!-- 🌸 Centered Profile Section -->
+    <div class="profile-container">
+      <video class="profile-video" autoplay loop muted playsinline>
+        <source src="Snap.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <header>
+      <h1 id="title">Happy Birthday, <span id="friendName">Shilpi</span> 🎉</h1>
+      <p class="lead">Wishing you joy, laughter, and love on your special day 💖</p>
+    </header>
+
+    <div class="card">
+      <div>
+        <div class="bigwish" id="bigWish">Have a magical year ahead, Shilpi!</div>
+        <div class="message" id="message">
+          May your year be filled with sweet moments, exciting adventures, and dreams that come true. You mean a lot — have a wonderful birthday!
+        </div>
+        <div style="margin-top:14px" class="controls">
+          <button id="revealBtn">Blow the candles / Reveal surprise</button>
+          <button id="musicBtn" class="secondary">Play Bargad Song</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="cake" aria-hidden="true">
+          <div class="layer bottom"></div>
+          <div class="layer top"></div>
+          <div class="candle" id="candle">
+            <div style="width:8px;height:28px;background:#ff9fb3;border-radius:6px;margin:0 auto"></div>
+            <div class="flame" id="flame"></div>
+          </div>
+        </div>
+        <div style="font-size:13px;color:rgba(0,0,0,0.6)">Click "Blow the candles" to reveal the surprise ✨</div>
+      </div>
+    </div>
+
+    <footer>Replace <code>profile.mp4</code> with Shilpi’s real video. 🎂</footer>
+  </div>
+
+  <audio id="bgMusic" loop src="bargad.mp3.mp3"></audio>
+
+  <script>
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize(){W=canvas.width=canvas.clientWidth*devicePixelRatio;H=canvas.height=canvas.clientHeight*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio);}
+    window.addEventListener('resize',resize);resize();
+
+    function random(min,max){return Math.random()*(max-min)+min}
+    class Particle{
+      constructor(){
+        this.x=random(0,canvas.clientWidth);
+        this.y=random(-20,-100);
+        this.w=random(6,12);
+        this.h=this.w*0.6;
+        this.color=`hsl(${~~random(0,360)},70%,60%)`;
+        this.speed=random(1,4);
+        this.rotation=random(0,360);
+        this.rotSpeed=random(-6,6);
+      }
+      update(){this.y+=this.speed;this.rotation+=this.rotSpeed;if(this.y>canvas.clientHeight+20){this.y=random(-100,-40);this.x=random(0,canvas.clientWidth);}}
+      draw(){ctx.save();ctx.translate(this.x,this.y);ctx.rotate(this.rotation*Math.PI/180);ctx.fillStyle=this.color;ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h);ctx.restore();}
+    }
+
+    let pieces=[];
+    function createPieces(n=80){pieces=[];for(let i=0;i<n;i++)pieces.push(new Particle())}
+    createPieces(60);
+    let running=false;
+    function loop(){
+      ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+      for(let p of pieces){p.update();p.draw()}
+      if(running)requestAnimationFrame(loop);
+    }
+
+    const revealBtn=document.getElementById('revealBtn');
+    const flame=document.getElementById('flame');
+    revealBtn.addEventListener('click',()=>{
+      flame.style.transition='transform 0.6s ease, opacity 0.6s ease';
+      flame.style.transform='scaleY(0.1) translateY(6px)';
+      flame.style.opacity='0';
+      typeWriter("Surprise! Hope your day is as lovely as you are — Happy Birthday Shilpi! 🎂🎈",document.getElementById('message'),20);
+      running=true;loop();
+      setTimeout(()=>{createPieces(120)},200);
+    });
+
+    function typeWriter(text,el,speed=30){
+      el.textContent='';
+      let i=0;
+      const id=setInterval(()=>{
+        el.textContent+=text[i++]||'';
+        if(i>=text.length)clearInterval(id);
+      },speed);
+    }
+
+    const musicBtn=document.getElementById('musicBtn');
+    const bg=document.getElementById('bgMusic');
+    let musicPlaying=false;
+    musicBtn.addEventListener('click',()=>{
+      if(!musicPlaying){
+        bg.play();musicPlaying=true;
+        musicBtn.textContent='Pause music';
+      } else {
+        bg.pause();musicPlaying=false;
+        musicBtn.textContent='Play Song';
+      }
+    });
+  </script>
+</body>
+</html>
